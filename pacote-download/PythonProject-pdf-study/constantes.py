@@ -1,0 +1,4 @@
+VIDA_INICIAL = 100
+DANO_ESPADA  = 25
+DANO_MAGIA = 50
+NIVEIS_DIFICULDADE = ('Fácil', 'Médio', 'Difício')
