@@ -108,3 +108,56 @@ print(numero)
 # c) Conversão de Listas
 lista = [1, 2, 3]
 lista_str = str(lista) # '[1, 2, 3]'
+#================================================
+#Exemplo prático (sistema de loja em RPG)
+
+# Input sempre retorna string!
+ouro_input = input('Qauntas moedas de ouro? ') # ex: '150'
+preco_espada = 75
+
+# Converta para int antes de calcular!
+ouro_int = int(ouro_input)
+troco = ouro_int - preco_espada
+
+print(f'Você comprou a espada. Troco: {troco} moerdas de ouro')
+
+#================================================
+# Técnica Ninja: Try/Except para Conversão Segura
+
+entrada = '123abc'
+try:
+    numero = int(entrada)
+    print('Número convertido', numero)
+except ValueError:
+    print('Isso não é um numero válido!')
+
+#===============================================
+'''
+Em Python, a instrução try é usada em conjunto com except, else e finally para o tratamento de exceções (erros) em um programa. O bloco try contém o código que pode gerar um erro, enquanto o bloco except lida com o erro caso ele ocorra, o else executa código sem erro e o finally executa código sempre, independentemente do resultado. 
+Como funciona:
+try: O código dentro do bloco try é executado. 
+except: Se ocorrer uma exceção (um erro) no bloco try, a execução do try é interrompida, o bloco except correspondente é executado para lidar com o erro. 
+else: Se nenhuma exceção ocorrer no bloco try, a cláusula else será executada. 
+finally: O código dentro do bloco finally é sempre executado, seja após um erro ou sem ele, sendo útil para ações de limpeza, como fechar um arquivo. 
+'''
+#===============================================
+try:
+    # Código que pode gerar um erro (ex: divisão por zero)
+    resultado = 10 / 0
+except ZeroDivisionError:
+    # Código para lidar com o erro de divisão por zero
+    print("Erro: Divisão por zero não é permitida.")
+else:
+    # Código que será executado se nenhuma exceção ocorrer no try
+    print("A operação foi bem-sucedida, resultado:", resultado)
+finally:
+    # Código que sempre será executado
+    print("Fim do bloco de tratamento de exceções.")
+
+#===============================================
+#Desafio Interativo:
+#O que acontece se você converter "True" para bool?
+texto = "True"
+valor_booleano = bool(texto)
+print(valor_booleano)  # True ou False?
+# Resposta: True (porque qualquer string não vazia vira True)!
