@@ -6,6 +6,8 @@ def calcula_imc(peso, altura):
     imc = peso / altura **2
     return imc
 
+print('Função Classifica importada')
+
 def classifica_imc(indice):
     if indice < 18.5:
         return 'Baixo peso'
