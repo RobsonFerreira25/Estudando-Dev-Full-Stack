@@ -36,7 +36,7 @@ def calc_custo_total(litros_gastos: float, preco_por_litro: float):
     
 # Formula: custo total
     custo_total = preco_por_litro * litros_gastos
-    return (f'O custo total foi: R$ {custo_total}')
+    return custo_total
 
 # Definindo a função
 def calc_custo_km(distancia_km: float, litros_gastos: float, preco_por_litro: float):
@@ -48,8 +48,8 @@ def calc_custo_km(distancia_km: float, litros_gastos: float, preco_por_litro: fl
         raise ValueError('O preço por litro tem que ser maior que zero')
     
 # Formula: custo por km
-    custo_km = custo_total / distancia_km
-    return custo_km
+    custo_total = (preco_por_litro * litros_gastos) / distancia_km
+    return custo_total
 
 # Definindo a função
 def estimar_autonomia(litros_tanque: float, km_por_litro: float, ):
