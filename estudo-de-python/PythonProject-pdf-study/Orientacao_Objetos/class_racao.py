@@ -1,10 +1,10 @@
 class racao:
-    def __init__(self, sabor, peso, marca, tipo, qalidade):
+    def __init__(self, sabor, peso, marca, tipo, qualidade):
         self.sabor = sabor
         self.peso = peso
         self.marca = marca
         self.tipo = tipo
-        self.qualidade = qalidade
+        self.qualidade = qualidade
         
 def main():
     racao1 = racao("Frango", 15, "Golden", "Cães", "Premium")
