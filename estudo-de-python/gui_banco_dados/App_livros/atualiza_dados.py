@@ -16,4 +16,3 @@ def atualizar_preco(id_livro, novo_preco):
         finally:
             cur.close()
             conn.close()
-
