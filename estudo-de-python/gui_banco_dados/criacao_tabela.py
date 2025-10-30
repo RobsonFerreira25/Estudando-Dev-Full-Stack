@@ -6,7 +6,8 @@ print("Conecção com o banco de dados aberta com sucesso!")
 
 # Criando o cursor e tabela
 cur = conn.cursor()
-cur.execute('''CREATE TABLE Agenda(ID INT PRIMARY KEY NOT NULL, Nome TEXT NOT NULL, Telefone CHAR(12));''')
+cur.execute('''CREATE TABLE Agenda(ID INT PRIMARY KEY NOT NULL, titulo TEXT NOT NULL, autor CHAR(12),
+            preco NUMERIC(10,2))''')
 print("Tabela criada com sucesso!")
 conn.commit()
 conn.close()
