@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    <!-- b) Incluir a folha de estilos do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<!-- e) Utilizar fundo bg-warning e j) Definir a função preencheCatalogo no onload -->
+<body class="bg-warning" onload="preencheCatalogo()">
+    <!-- d) Definir a área principal como container-fluid -->
+    <div class="container-fluid">
+        <!-- c) Incluir o título "Catálogo de Receitas" -->
+        <h1 class="pt-4 px-4">Catálogo de Receitas</h1>
+        
+        <!-- f) div flex-wrap identificada como pnlCatalogo -->
+        <div id="pnlCatalogo" class="d-flex flex-wrap justify-content-start gap-4 p-4">
+            <!-- Os painéis de receitas serão inseridos aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <!-- g) Acrescentar um trecho em Java Script -->
+    <script>
+        // h) Organizar dados de receitas em um vetor JSON
+        const receitas = [
+            {
+                titulo: "Arroz de Couve-Flor",
+                imagem: "arroz_couve_flor.png",
+                preparo: "Deixe a couve-flor picada. Adicione os ingredientes e refogue bem. Adicione sal, tampe a panela e deixe cozinhar.",
+                ingredientes: ["Arroz", "Couve-Flor", "Cebola Média", "Azeite"]
+            },
+            {
+                titulo: "Bolo de Café",
+                imagem: "bolo_cafe.png",
+                preparo: "Bata o açúcar, as gemas e o café. Adicione farinha e chocolate e mexa bem. Bata as claras e junte à mistura.",
+                ingredientes: ["Farinha de Trigo", "Açúcar", "Café Coado", "Chocolate em Pó", "Ovos"]
+            },
+            {
+                titulo: "Coxinha de Brigadeiro",
+                imagem: "coxinha_brigadeiro.png",
+                preparo: "Junte o leite condensado, chocolate em pó e manteiga. Aqueça no fogo baixo. Envolva os morangos e passe no granulado.",
+                ingredientes: ["Leite Condensado", "Chocolate em Pó", "Manteiga", "Morango", "Chocolate Granulado"]
+            }
+        ];
+
+        // i) Definir função getListaIngredientes
+        function getListaIngredientes(receita) {
+            // a) Iniciar a lista com tag ul
+            const inicio = "<ul>";
+            // b) Utilizar map e reduce para obter itens baseados em li
+            const itens = receita.ingredientes
+                .map(ingrediente => `<li>${ingrediente}</li>`)
+                .reduce((acumulador, item) => acumulador + item, "");
+            // c) Finalizar com fechamento de ul
+            const fim = "</ul>";
+            
+            return inicio + itens + fim;
+        }
+
+        // i) Definir função getCard
+        function getCard(receita) {
+            // a) Substituição direta com crase
+            // b) div com classe card e largura 250px
+            // c) Imagem card-img-top
+            // d) div card-body
+            // e) Título card-title
+            // f) Div card-text com ingredientes, hr e preparo
+            return `
+                <div class="card" style="width: 250px;">
+                    <img src="${receita.imagem}" class="card-img-top" alt="${receita.titulo}">
+                    <div class="card-body">
+                        <h5 class="card-title">${receita.titulo}</h5>
+                        <div class="card-text">
+                            ${getListaIngredientes(receita)}
+                            <hr>
+                            ${receita.preparo}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // j) Definir a função preencheCatalogo
+        function preencheCatalogo() {
+            // a) Capturar o pnlCatalogo
+            const pnlCatalogo = document.getElementById("pnlCatalogo");
+            
+            // b) map e reduce para obter o HTML dos painéis
+            const htmlReceitas = receitas
+                .map(receita => getCard(receita))
+                .reduce((acumulador, card) => acumulador + card, "");
+                
+            // c) Alterar innerHTML
+            pnlCatalogo.innerHTML = htmlReceitas;
+        }
+    </script>
+</body>
+</html>

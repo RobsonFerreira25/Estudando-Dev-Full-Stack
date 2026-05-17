@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenando Valores</title>
+    <!-- Adicionando o Bootstrap para deixar com a aparência igual ao exemplo solicitado -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="ordenando.js"></script>
+</head>
+<body class="container mt-4">
+    <h2>Ordenando Valores</h2>
+    
+    <div class="mb-3 w-50">
+        <label for="valor" class="form-label">Valor</label>
+        <input type="number" id="valor" class="form-control">
+    </div>
+    
+    <button class="btn btn-primary mb-3" onclick="add()">Adicionar</button>
+    
+    <hr class="w-50">
+    
+    <div class="mb-3 w-50">
+        <select id="algoritmo" class="form-select">
+            <option value="bubble" selected>Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="quick">Quick Sort</option>
+        </select>
+    </div>
+    
+    <div class="mb-3">
+        <button class="btn btn-primary" onclick="ordenar()">Ordenar</button>
+        <button class="btn btn-primary ms-1" onclick="misturar()">Misturar</button>
+    </div>
+    
+    <hr class="w-50">
+    
+    <ul id="valores"></ul>
+
+    <script>
+        // i) Funções estilo clássico
+        function add() {
+            // a) Capturar o campo de entrada
+            var campoValor = document.getElementById('valor');
+            // b) Capturar a lista
+            var listaValores = document.getElementById('valores');
+            
+            if (campoValor.value !== "") {
+                // c) Criar um elemento li
+                var node = document.createElement('li');
+                // d) Definir nó de texto
+                var textNode = document.createTextNode(campoValor.value);
+                node.appendChild(textNode);
+                // e) Adicionar à lista
+                listaValores.appendChild(node);
+                
+                // Limpar o campo
+                campoValor.value = '';
+            }
+        }
+
+        function ordenar() {
+            // a) Capturar a lista e seleção
+            var listaValores = document.getElementById('valores');
+            var selecao = document.getElementById('algoritmo');
+            
+            // b) Obter nós da lista, c) converter com eval
+            var vetor = Array.from(listaValores.children).map(function(item) {
+                return eval(item.innerHTML);
+            });
+            
+            // d) Escolher algoritmo e aplicar
+            var algoritmo = selecao.options[selecao.selectedIndex].value;
+            
+            if (algoritmo === "bubble") {
+                bubble_sort(vetor);
+            } else if (algoritmo === "selection") {
+                selection_sort(vetor);
+            } else if (algoritmo === "quick") {
+                quick_sort(vetor, 0, vetor.length - 1);
+            }
+            
+            // e) Utilizar map e reduce para substituir
+            var novosItens = vetor.map(function(item) {
+                return "<li>" + item + "</li>";
+            }).reduce(function(acumulador, item) {
+                return acumulador + item;
+            }, "");
+            
+            listaValores.innerHTML = novosItens;
+        }
+
+        function misturar() {
+            // a) Capturar a lista
+            var listaValores = document.getElementById('valores');
+            
+            // b) e c) Obter nós, converter com eval para vetor
+            var vetor = Array.from(listaValores.children).map(function(item) {
+                return eval(item.innerHTML);
+            });
+            
+            // d) Aplicar função shuffle
+            shuffle(vetor, vetor.length * 2); // quantidade arbitrária de trocas
+            
+            // e) Utilizar map e reduce para substituir
+            var novosItens = vetor.map(function(item) {
+                return "<li>" + item + "</li>";
+            }).reduce(function(acumulador, item) {
+                return acumulador + item;
+            }, "");
+            
+            listaValores.innerHTML = novosItens;
+        }
+    </script>
+</body>
+</html>
