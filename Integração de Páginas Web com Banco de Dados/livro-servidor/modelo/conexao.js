@@ -1,11 +1,6 @@
 const banco = require('mongoose');
 
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true
-};
-
-banco.connect('mongodb://localhost:27017/livraria', options)
+banco.connect('mongodb://127.0.0.1:27017/livraria')
   .then(() => console.log('Conectado ao MongoDB com sucesso.'))
   .catch((err) => console.error('Erro ao conectar ao MongoDB:', err));
 
